@@ -28,6 +28,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            // A surface container using the 'background' color from the theme
             DiceRollerTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -52,6 +53,7 @@ fun DiceRollerApp() {
 @Composable
 fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
     var result by remember { mutableIntStateOf( 1) }
+    // Get the correct image resource based on the result of the dice roll (1..6)
     val imageResource = when(result) {
         1 -> R.drawable.dice_1
         2 -> R.drawable.dice_2
@@ -60,9 +62,10 @@ fun DiceWithButtonAndImage(modifier: Modifier = Modifier) {
         5 -> R.drawable.dice_5
         else -> R.drawable.dice_6
     }
+    // Display the dice roll result and a button to roll the dice when clicked on it
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Image(painter = painterResource(imageResource), contentDescription = result.toString())
-
+        // Display the dice roll result and a button to roll the dice when clicked on it
         Button(
             onClick = { result = (1..6).random() },
         ) {
